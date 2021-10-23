@@ -25,6 +25,10 @@ module Api
           :verse_id
         )
       end
+
+      def passage_content_not_found
+        ActionCable.server.broadcast(stream, { not_found: 'Verse not found' })
+      end
     end
   end
 end

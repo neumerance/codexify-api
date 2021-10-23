@@ -8,6 +8,7 @@ module Pipelines
       class_attribute :removable_substring
       self.removable_substring = [
         '(A)',
+        '(B)',
         '[a]',
         '(,)'
       ].freeze
