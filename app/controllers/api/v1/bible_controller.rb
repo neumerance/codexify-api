@@ -6,16 +6,15 @@ module Api
       end
 
       def read
-        ActionCable.server.broadcast(
-          stream,
-          ::Pipelines::BibleGatewayPipeline.call(verse_params)
-        )
+        data = ::Pipelines::BibleGatewayPipeline.call(verse_params)
+
+        ActionCable.server.broadcast(stream, data)
       end
 
       private
 
       def stream
-        "bible_session_#{request.headers['HTTP_SESSION_TOKEN']}"
+        "bible_session_#{request.headers['HTTP_SESSION_ID']}"
       end
 
       def verse_params
