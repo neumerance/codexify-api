@@ -9,15 +9,23 @@ module Pipelines
       static_facade :call, :params
 
       def call
-        self.class.get(
-          '/passage',
-          {
-            query: {
-              search: "#{params[:book_name]} #{params[:chapter_id]}:#{params[:verse_id]}",
-              version: params[:translation_code]
+        Rails.cache.fetch(cache_key) do
+          self.class.get(
+            '/passage',
+            {
+              query: {
+                search: "#{params[:book_name]} #{params[:chapter_id]}:#{params[:verse_id]}",
+                version: params[:translation_code]
+              }
             }
-          }
-        )
+          )
+        end
+      end
+
+      private
+
+      def cache_key
+        params.values.join('/')
       end
     end
   end

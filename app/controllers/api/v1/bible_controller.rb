@@ -17,15 +17,6 @@ module Api
         "bible_session_#{request.headers['HTTP_SESSION_ID']}"
       end
 
-      def verse_params
-        params.permit(
-          :translation_code,
-          :book_name,
-          :chapter_id,
-          :verse_id
-        )
-      end
-
       def passage_content_not_found
         ActionCable.server.broadcast(stream, { not_found: 'Verse not found' })
       end
