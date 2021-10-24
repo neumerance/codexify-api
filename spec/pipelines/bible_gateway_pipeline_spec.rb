@@ -16,7 +16,7 @@ describe Pipelines::BibleGatewayPipeline do
 
     before do
       allow(described_class::Request).to receive(:call).and_return(content)
-      allow(described_class::Mapper).to receive(:map).and_return(content)
+      allow(described_class::Mapper).to receive(:map).and_return({ title: 'Any title', content: content })
       allow(described_class::Sanitizer).to receive(:sanitize).and_return(content)
     end
 
@@ -26,18 +26,9 @@ describe Pipelines::BibleGatewayPipeline do
         chapter_id: 1,
         verse_id: 1,
         translation_code: 'MBB',
-        content: 'Any content'
+        content: 'Any content',
+        title: 'Any title'
       )
-    end
-
-    context 'when Mapper returns nothing' do
-      before do
-        allow(described_class::Mapper).to receive(:map).and_return(nil)
-      end
-
-      it 'raise exception' do
-        expect { call }.to raise_error described_class::PassageContentNotFound
-      end
     end
   end
 end

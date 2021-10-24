@@ -5,7 +5,16 @@ module Pipelines
 
       def map
         doc = Nokogiri::HTML(html_string)
-        doc.css('.passage-content p').text
+
+        dropdown_texts = doc.css('.dropdown-display-text')
+        content =  doc.css('.passage-content p')
+
+        raise PassageContentNotFound unless dropdown_texts.present? && content.present?
+
+        {
+          title: dropdown_texts.at(0).text,
+          content: content.text,
+        }
       end
     end
   end

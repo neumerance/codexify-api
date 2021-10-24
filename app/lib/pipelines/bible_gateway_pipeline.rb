@@ -6,13 +6,14 @@ module Pipelines
 
     def call
       response = Request.call(params)
-      mapped_content = Mapper.map(response)
+      mapper = Mapper.map(response)
 
-      raise PassageContentNotFound unless mapped_content.present?
+      content = mapper[:content]
+      title = mapper[:title]
 
-      sanitized_content = Sanitizer.sanitize(mapped_content)
+      sanitized_content = Sanitizer.sanitize(content)
 
-      params.merge(content: sanitized_content)
+      params.merge(content: sanitized_content, title: title)
     end
 
     private
