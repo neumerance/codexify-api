@@ -5,5 +5,6 @@ FactoryBot.define do
     chapter_id { 1 }
     verse_id { 1 }
     content { 'scripture...' }
+    title { 'title...' }
   end
 end

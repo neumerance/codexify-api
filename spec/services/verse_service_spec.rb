@@ -11,7 +11,8 @@ describe VerseService do
           book_name: 'Genesis',
           chapter_id: 1,
           verse_id: 1,
-          content: 'scripture...'
+          content: 'scripture...',
+          title: 'title...'
         })
       )
     end
@@ -22,6 +23,7 @@ describe VerseService do
       expect(service.chapter_id).to eq 1
       expect(service.verse_id).to eq 1
       expect(service.content).to eq 'scripture...'
+      expect(service.title).to eq 'title...'
     end
   end
 
@@ -33,16 +35,18 @@ describe VerseService do
         book_name: 'Genesis',
         chapter_id: 1,
         verse_id: 1,
-        content: 'scripture...'
+        content: 'scripture...',
+        title: 'title...'
       )
     end
 
     it 'returns object of verse' do
       expect(service.translation_code).to eq 'MBBR'
       expect(service.book_name).to eq 'Genesis'
-      expect(service.chapter_id).to eq '1'
-      expect(service.verse_id).to eq '1'
+      expect(service.chapter_id).to eq 1
+      expect(service.verse_id).to eq 1
       expect(service.content).to eq 'scripture...'
+      expect(service.title).to eq 'title...'
     end
   end
 end
