@@ -16,6 +16,10 @@ module Pipelines
       sanitized_content = Sanitizer.sanitize(content)
 
       @verse = params.merge(content: sanitized_content, title: title)
+
+      record_verse
+
+      @verse
     end
 
     private
