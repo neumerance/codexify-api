@@ -14,7 +14,7 @@ module Api
       private
 
       def stream
-        "bible_session_#{request.headers['HTTP_SESSION_ID']}"
+        "bible_session_#{request.headers['HTTP_SESSION_TOKEN']}"
       end
 
       def passage_content_not_found
