@@ -7,7 +7,8 @@ module Api
           book_name: verse.book_name,
           chapter_id: verse.chapter_id,
           verse_id: verse.verse_id,
-          content: verse.content
+          content: verse.content,
+          title: verse.title
         }
       end
 
@@ -19,7 +20,8 @@ module Api
             book_name: verse.book_name,
             chapter_id: verse.chapter_id,
             verse_id: verse.verse_id,
-            content: verse.content
+            content: verse.content,
+            title: verse.title
           }
         )
       end
