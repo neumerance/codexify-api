@@ -4,17 +4,20 @@
 # pick it up automatically.
 ---
 :verbose: false
-:concurrency: 1
+:concurrency: 3
 :timeout: 25
 
 # Sidekiq will run this file through ERB when reading it so you can
 # even put in dynamic logic, like a host-specific queue.
 # http://www.mikeperham.com/2013/11/13/advanced-sidekiq-host-specific-queues/
 :queues:
+  - critical
   - default
+  - low
+  - codexify_api_production_default
 
 # you can override concurrency based on environment
 production:
-  :concurrency: 1
+  :concurrency: 3
 staging:
-  :concurrency: 1
+  :concurrency: 3
